@@ -42,14 +42,14 @@ const apiSpriteImage = require("./app/api/spriteimage");
 const apiTable = require("./app/api/table");
 const apiPrefab = require("./app/api/prefab");
 const apiSession = require("./app/api/session");
-const apiCommande= require("./app/api/commande");
-const apiLocation= require("./app/api/location");
+const apiCommande = require("./app/api/commande");
+const apiLocation = require("./app/api/location");
 var models = require("./models/Association");
 
 var sockets = [];
 
 //Database
-const db = require("./config/database");
+//const db = require("./config/database");
 const bulkInsert = require("./config/bulkInsert");
 
 
@@ -62,7 +62,9 @@ const COMMUNICATIONPORT = 3000;
 // enable CORS
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static("app/public"));
 app.use(express.static("public"));
 //app.use(morgan("dev"));
@@ -94,14 +96,14 @@ apiCommande(app, db);
 
 //app.get("/", (req, res) => res.send("INDEX"));
 
-app.get('/',function(req,res){
-     res.sendFile(__dirname + "/index.html");
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + "/index.html");
 
 });
 
 require("./models/Association")(db, Sequelize);
-
-/*db.authenticate()
+/*
+db.authenticate()
   .then(() => {
     console.log("connection to database success");
 
@@ -109,26 +111,25 @@ require("./models/Association")(db, Sequelize);
       force: false
     }).then(async function (req, res) {
       bulkInsert();
-    app.listen(PORT, () =>
-        console.log("App listening on port " + PORT + "!")
-      );
 
-
-          console.log("Communication listening on port " + COMMUNICATIONPORT + "!")
-
-    });
   })
   .catch(e => console.log("Error " + err));
 
+
+
+});
+
 */
-    app.listen(PORT, () =>
-        console.log("App listening on port " + PORT + "!")
-      );
+app.listen(PORT, () =>
+  console.log("App listening on port " + PORT + "!")
+);
 
 
-          console.log("Communication listening on port " + COMMUNICATIONPORT + "!")
+console.log("Communication listening on port " + COMMUNICATIONPORT + "!")
 
 
 
-module.exports.sequelize = db;
+
+
+//module.exports.sequelize = db;
 module.exports.Sequelize = Sequelize;
