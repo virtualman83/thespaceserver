@@ -101,7 +101,7 @@ app.get('/',function(req,res){
 
 require("./models/Association")(db, Sequelize);
 
-db.authenticate()
+/*db.authenticate()
   .then(() => {
     console.log("connection to database success");
 
@@ -120,8 +120,13 @@ db.authenticate()
   })
   .catch(e => console.log("Error " + err));
 
+*/
+    app.listen(PORT, () =>
+        console.log("App listening on port " + PORT + "!")
+      );
 
 
+          console.log("Communication listening on port " + COMMUNICATIONPORT + "!")
 
 
 
